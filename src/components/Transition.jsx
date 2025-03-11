@@ -14,18 +14,17 @@ const TransitionComp = () => {
       <Transition
         nodeRef={nodeRef}
         in={show}
-        timeout={2000}
+        timeout={1000}
+        onEnter={(node)=>{
+          console.log('ENTER')
+        }}
+        onExit={(node)=>{
+          console.log('EXIT')
+        }}
       >
         {state =>
-          <div
-            style={{
-                background:'red',
-                height:'100px',
-                transition:'all 2s ease',
-                opacity: state === 'exited' || state === 'exiting' ? 0:1
-            }}
-          >
-            {state}
+          <div ref={nodeRef} className={`square square-${state}`}>
+            {`square square-${state}`}
           </div>
         }
       </Transition>
