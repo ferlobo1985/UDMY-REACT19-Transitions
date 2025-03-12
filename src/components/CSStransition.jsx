@@ -1,7 +1,29 @@
+import { useState, useRef } from "react";
+import { CSSTransition } from "react-transition-group";
+
+
 const CssTr = () => {
+  let [show,setShow] = useState(false);
+  const nodeRef = useRef(null);
+
+  const showDiv = () =>{
+    setShow(!show ? true:false)
+  }
+
   return (
     <>
-      <div>CSS TRANSITIONS</div>
+      <CSSTransition
+        nodeRef={nodeRef}
+        in={show}
+        timeout={500}
+        classNames="cssSq"
+      >
+        <div ref={nodeRef} className="cssSq">
+          Hello
+        </div>
+      </CSSTransition>
+
+      <button className="btn btn-primary" onClick={showDiv}>Show</button>
     </>
     )
 };
